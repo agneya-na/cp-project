@@ -66,6 +66,10 @@ def report_paaya():
 
 if __name__ == '__main__':
     print("\n✨ Khoya-Paaya Vibhag app is running!")
-    print("Visit: http://127.0.0.1:5000\n")
-    app.run(debug=True)
-    
+    print("Visit: http://0.0.0.0:$PORT\n")
+
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=True
+    )
