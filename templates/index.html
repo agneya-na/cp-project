@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Khoya-Paaya Vibhag</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Urbanist', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1A1A1A; /* Forbidden Forest Black */
+      color: #F5F5DC; /* Old Parchment White */
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #740001; /* Gryffindor Maroon */
+      color: #F5F5DC;
+      padding: 16px 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #F5F5DC;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #1D3557; /* Ravenclaw Blue */
+      text-shadow: 0 0 5px #D4AF37; /* gold glow */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #D4AF37; /* Enchanted Gold */
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    form {
+      background-color: #1C1C1C; /* Castle Dungeon Gray */
+      padding: 25px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+      border: 1px solid #0E7C61; /* Slytherin Emerald */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0 20px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background-color: #121212;
+      color: #F5F5DC;
+      font-size: 16px;
+    }
+
+    input[type="file"] {
+      padding: 8px;
+    }
+
+    button {
+      background-color: #D4AF37;
+      color: #1A1A1A;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #FFCC00; /* Hufflepuff Yellow */
+      color: #121212;
+    }
+
+    .item-box {
+      background-color: #1C1C1C;
+      border-left: 5px solid #0E7C61;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item-image {
+      max-width: 200px;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #D4AF37;
+    }
+
+    footer {
+      background-color: #740001;
+      color: #F5F5DC;
+      padding: 20px;
+      text-align: center;
+      margin-top: 60px;
+      font-weight: 600;
+    }
+
+    .sorting-hat {
+      font-style: italic;
+      color: #FFCC00;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      .item-image {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">🧙‍♂️ Khoya-Paaya Vibhag</div>
+  <ul class="nav-links">
+    <li><a href="#khoya-form">🔍 Kho Gaya?</a></li>
+    <li><a href="#paaya-form">✨ Mil Gaya?</a></li>
+    <li><a href="#khoya-list">📜 Khoya Items</a></li>
+    <li><a href="#paaya-list">🧾 Paaya Items</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h2 id="khoya-form">Report Khoya Item</h2>
+  <form method="POST" action="/report_khoya" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Item Name" required>
+    <textarea name="description" placeholder="Description" required></textarea>
+    <input type="text" name="contact" placeholder="Your Contact Info" required>
+    <input type="file" name="image" accept="image/*">
+    <button type="submit">Report Khoya</button>
+  </form>
+
+  <h2 id="paaya-form">Report Paaya Item</h2>
+  <form method="POST" action="/report_paaya" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Item Name" required>
+    <textarea name="description" placeholder="Description" required></textarea>
+    <input type="text" name="contact" placeholder="Your Contact Info" required>
+    <input type="file" name="image" accept="image/*">
+    <button type="submit">Report Paaya</button>
+  </form>
+
+  <h2 id="khoya-list">Khoya Items</h2>
+  {% for item in khoya_items %}
+  <div class="item-box">
+    {% if item.image_filename %}
+    <img class="item-image" src="{{ url_for('static', filename='uploads/' ~ item.image_filename) }}" alt="Khoya item image">
+    {% endif %}
+    <strong>{{ item.name }}</strong>
+    <p>{{ item.description }}</p>
+    <em>Contact: {{ item.contact }}</em>
+  </div>
+  {% endfor %}
+
+  <h2 id="paaya-list">Paaya Items</h2>
+  {% for item in paaya_items %}
+  <div class="item-box">
+    {% if item.image_filename %}
+    <img class="item-image" src="{{ url_for('static', filename='uploads/' ~ item.image_filename) }}" alt="Paaya item image">
+    {% endif %}
+    <strong>{{ item.name }}</strong>
+    <p>{{ item.description }}</p>
+    <em>Contact: {{ item.contact }}</em>
+  </div>
+  {% endfor %}
+</div>
+
+<footer>
+  &copy; 2025 Khoya-Paya Vibhag | Enchanted by 🪄 aditya and team members..
+  <div class="sorting-hat">"Ah, another curious mind... perhaps you'll find what you seek... or be found instead."</div>
+</footer>
+
+</body>
+</html>
