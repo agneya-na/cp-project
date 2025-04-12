@@ -10,9 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Urbanist', sans-serif;
@@ -178,8 +176,8 @@
 <nav class="navbar">
   <div class="logo">🧙‍♂ VastuVault</div>
   <ul class="nav-links">
-    <li><a href="#khoya-form">🔍 Report Lost</a></li>
-    <li><a href="#paaya-form">✨ Report Found</a></li>
+    <li><a href="#khoya-form">🔍 Report Lost (Khoya)</a></li>
+    <li><a href="#paaya-form">✨ Report Found (Paaya)</a></li>
     <li><a href="#khoya-list">📜 Lost Items</a></li>
     <li><a href="#paaya-list">🧾 Found Items</a></li>
   </ul>
@@ -187,25 +185,25 @@
 
 <div class="container">
   <h2 id="khoya-form">Report Lost (Khoya) Item</h2>
-  <form method="POST" action="/report_khoya" enctype="multipart/form-data">
+  <form method="POST" action="/report_lost" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Item Name" required>
     <textarea name="description" placeholder="Description" required></textarea>
     <input type="text" name="contact" placeholder="Your Contact Info" required>
     <input type="file" name="image" accept="image/*">
-    <button type="submit">Report Lost </button>
+    <button type="submit">Report Lost</button>
   </form>
 
   <h2 id="paaya-form">Report Found (Paaya) Item</h2>
-  <form method="POST" action="/report_paaya" enctype="multipart/form-data">
+  <form method="POST" action="/report_found" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Item Name" required>
     <textarea name="description" placeholder="Description" required></textarea>
     <input type="text" name="contact" placeholder="Your Contact Info" required>
     <input type="file" name="image" accept="image/*">
-    <button type="submit">Report Found </button>
+    <button type="submit">Report Found</button>
   </form>
 
   <h2 id="khoya-list">Lost (Khoya) Items</h2>
-  {% for item in khoya_items %}
+  {% for item in lost_items %}
   <div class="item-box">
     {% if item.image_filename %}
     <img class="item-image" src="{{ url_for('static', filename='uploads/' ~ item.image_filename) }}" alt="Lost item image">
@@ -217,7 +215,7 @@
   {% endfor %}
 
   <h2 id="paaya-list">Found (Paaya) Items</h2>
-  {% for item in paaya_items %}
+  {% for item in found_items %}
   <div class="item-box">
     {% if item.image_filename %}
     <img class="item-image" src="{{ url_for('static', filename='uploads/' ~ item.image_filename) }}" alt="Found item image">
