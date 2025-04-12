@@ -7,8 +7,8 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # In-memory storage
-khoya_items = []
-paaya_items = []
+lost_items = []
+found_items = []
 
 # Base class
 class Vastu:
@@ -18,20 +18,20 @@ class Vastu:
         self.contact = contact
         self.image_filename = image_filename
 
-class KhoyaItem(Vastu):
+class LostItem(Vastu):
     def __init__(self, name, description, contact, image_filename=None):
         super().__init__(name, description, contact, image_filename)
 
-class PaayaItem(Vastu):
+class FoundItem(Vastu):
     def __init__(self, name, description, contact, image_filename=None):
         super().__init__(name, description, contact, image_filename)
 
 @app.route('/')
 def home():
-    return render_template('index.html', khoya_items=khoya_items, paaya_items=paaya_items)
+    return render_template('index.html', lost_items=lost_items, found_items=found_items)
 
-@app.route('/report_khoya', methods=['POST'])
-def report_khoya():
+@app.route('/report_lost', methods=['POST'])
+def report_lost():
     try:
         name = request.form['name']
         description = request.form['description']
@@ -41,14 +41,14 @@ def report_khoya():
         if image:
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        item = KhoyaItem(name, description, contact, filename)
-        khoya_items.append(item)
+        item = LostItem(name, description, contact, filename)
+        lost_items.append(item)
         return redirect(url_for('home'))
     except Exception as e:
-        return f"Error while reporting khoya item: {e}"
+        return f"Error while reporting lost item: {e}"
 
-@app.route('/report_paaya', methods=['POST'])
-def report_paaya():
+@app.route('/report_found', methods=['POST'])
+def report_found():
     try:
         name = request.form['name']
         description = request.form['description']
@@ -58,14 +58,14 @@ def report_paaya():
         if image:
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        item = PaayaItem(name, description, contact, filename)
-        paaya_items.append(item)
+        item = FoundItem(name, description, contact, filename)
+        found_items.append(item)
         return redirect(url_for('home'))
     except Exception as e:
-        return f"Error while reporting paaya item: {e}"
+        return f"Error while reporting found item: {e}"
 
 if __name__ == '__main__':
-    print("\n✨ Khoya-Paaya Vibhag app is running!")
+    print("\n✨ Welcome to VastuVault! ✨")
     print("Visit: http://0.0.0.0:$PORT\n")
 
     app.run(
